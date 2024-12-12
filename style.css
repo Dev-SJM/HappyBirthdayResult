@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;  /* 가로 스크롤만 막기 */
+    background-color: #e8f0f5;
+}
+
+header {
+    width: 100%;
+}
+
+header img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.book-wrapper {
+   position: relative;
+   width: 200px;
+   height: auto;
+}
+
+.book-img {
+   width: 200px;
+   height: auto;
+   position: relative;
+   z-index: 2;
+}
+
+.book-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, 
+        rgba(232,240,245,1) 0%,
+        rgba(232,240,245,0.9) 40%,
+        rgba(232,240,245,0.7) 60%,
+        rgba(232,240,245,0.3) 80%,
+        rgba(232,240,245,0) 100%
+    );
+    z-index: 1;
+}
+
+.gunim-img {
+    width: 300px;
+    height: auto;
+}
+
+.event-img {
+    width: 500px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-family: "Malgun Gothic", "맑은 고딕", sans-serif;
+    text-align: center;
+}
+
+.text-container span {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.snowflake {
+    position: absolute;
+    color: white;
+    font-size: 40px;
+}
+
+.snowflake:nth-child(1) { top: 20%; right: 20%; }
+.snowflake:nth-child(2) { top: 25%; left: 20%; }
+.snowflake:nth-child(3) { top: 30%; right: 10%; }
+.snowflake:nth-child(4) { top: 35%; left: 10%; }
+.snowflake:nth-child(5) { top: 48%; right: 48%; }
+.snowflake:nth-child(6) { top: 47%; right: 10%; }
+.snowflake:nth-child(7) { top: 53%; left: 10%; }
+
+.slider-container {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    margin: 0 auto;
+    /* perspective 제거 */
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* transform-style: preserve-3d 제거 */
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: url('img/card.png') no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.slide img {
+    position: absolute;
+    width: 64.5%; /* card.png의 내부 영역에 맞게 조절 */
+    height: 64%; /* card.png의 내부 영역에 맞게 조절 */
+    object-fit: cover;
+    top: 49%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px; /* 필요한 경우 조정 */
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.prev {
+    left: -20px;
+}
+
+.next {
+    right: -20px;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background-color: #333;
+    transform: scale(1.2);
+}
+
+.tree-img {
+    position: absolute;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.tree-left {
+    left: -180px;  /* 조절 가능 */
+}
+
+.tree-right {
+    right: -180px;  /* 조절 가능 */
+}

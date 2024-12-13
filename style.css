@@ -1,12 +1,20 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
 body {
-    overflow-x: hidden;  /* 가로 스크롤만 막기 */
+    width: 100vw;  /* 뷰포트의 전체 너비 */
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-x: none;  /* 모바일에서 당겨서 새로고침 방지 */
     background-color: #e8f0f5;
+}
+
+* {
+    -webkit-overflow-scrolling: touch;  /* iOS의 부드러운 스크롤 비활성화 */
+    -webkit-tap-highlight-color: transparent;  /* iOS의 탭 하이라이트 제거 */
 }
 
 header {

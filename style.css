@@ -1,20 +1,24 @@
 html, body {
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    position: relative;
-}
-
-body {
-    width: 100%;  /* 뷰포트의 전체 너비 */
     margin: 0;
     padding: 0;
-    overscroll-behavior-x: none;  /* 모바일에서 당겨서 새로고침 방지 */
-    background-color: #e8f0f5;
+    box-sizing: border-box;
 }
 
 * {
-    -webkit-overflow-scrolling: touch;  /* iOS의 부드러운 스크롤 비활성화 */
-    -webkit-tap-highlight-color: transparent;  /* iOS의 탭 하이라이트 제거 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.image-container {
+    width: 100%;  /* 컨테이너를 100%로 설정 */
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 header {
@@ -28,19 +32,23 @@ header img {
 }
 
 main {
-    width: 100%;
+    width: 100vw;  /* 뷰포트 전체 너비 사용 */
     min-height: calc(100vh - 200px);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 80px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+    width: 100%;  /* 컨테이너를 100%로 설정 */
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .book-wrapper {

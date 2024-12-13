@@ -49,3 +49,32 @@ dots.forEach((dot, index) => {
 
 // 초기 상태 설정
 updateSlider();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tvThumbnail = document.getElementById('tv-thumbnail');
+    const videoModal = document.getElementById('video-modal');
+    const videoElement = videoModal.querySelector('video');
+    const closeBtn = videoModal.querySelector('.close-btn');
+
+    // TV 이미지 클릭 시 모달 열기
+    tvThumbnail.addEventListener('click', () => {
+        videoModal.style.display = 'flex';
+        videoElement.play();
+    });
+
+    // 닫기 버튼 클릭 시 모달 닫기
+    closeBtn.addEventListener('click', () => {
+        videoModal.style.display = 'none';
+        videoElement.pause();
+        videoElement.currentTime = 0;
+    });
+
+    // 모달 외부 클릭 시 닫기
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+            videoModal.style.display = 'none';
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        }
+    });
+});

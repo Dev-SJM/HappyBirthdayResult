@@ -1,24 +1,20 @@
 html, body {
-    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    position: relative;
+}
+
+body {
+    width: 100%;  /* 뷰포트의 전체 너비 */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    overscroll-behavior-x: none;  /* 모바일에서 당겨서 새로고침 방지 */
+    /* 배경색 제거 */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.image-container {
-    width: 100%;  /* 컨테이너를 100%로 설정 */
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;  /* iOS의 부드러운 스크롤 비활성화 */
+    -webkit-tap-highlight-color: transparent;  /* iOS의 탭 하이라이트 제거 */
 }
 
 header {
@@ -29,62 +25,38 @@ header img {
     width: 100%;
     height: auto;
     display: block;
+    background-color: rgb(229, 232, 231);
 }
 
 main {
-    width: 100vw;  /* 뷰포트 전체 너비 사용 */
+    width: 100%;
     min-height: calc(100vh - 200px);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 80px;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
 }
 
-.image-container {
-    width: 100%;  /* 컨테이너를 100%로 설정 */
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(229, 232, 231);
 }
 
-.book-wrapper {
-   position: relative;
-   width: 200px;
-   height: auto;
-}
-
-.book-img {
-   width: 200px;
+.content-img {
+   width: 110%;
    height: auto;
    position: relative;
+   margin-top: 30px;
    z-index: 2;
 }
 
-.book-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle, 
-        rgba(232,240,245,1) 0%,
-        rgba(232,240,245,0.9) 40%,
-        rgba(232,240,245,0.7) 60%,
-        rgba(232,240,245,0.3) 80%,
-        rgba(232,240,245,0) 100%
-    );
-    z-index: 1;
-}
-
-.gunim-img {
-    width: 300px;
-    height: auto;
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(229, 232, 231);
 }
 
 .event-img {
@@ -115,17 +87,9 @@ main {
     font-size: 40px;
 }
 
-.snowflake:nth-child(1) { top: 20%; right: 20%; }
-.snowflake:nth-child(2) { top: 25%; left: 20%; }
-.snowflake:nth-child(3) { top: 30%; right: 10%; }
-.snowflake:nth-child(4) { top: 35%; left: 10%; }
-.snowflake:nth-child(5) { top: 48%; right: 48%; }
-.snowflake:nth-child(6) { top: 47%; right: 10%; }
-.snowflake:nth-child(7) { top: 53%; left: 10%; }
-
 .slider-container {
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 500px;
     position: relative;
     margin: 0 auto;
     /* perspective 제거 */
@@ -210,7 +174,7 @@ main {
     position: absolute;
     height: 100%;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
 
 .tree-left {
@@ -219,4 +183,94 @@ main {
 
 .tree-right {
     right: -180px;  /* 조절 가능 */
+}
+
+.tv-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(229, 232, 231);
+}
+
+.tv-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+}
+
+.tv-video {
+    width: 100%;
+    height: auto;
+    z-index: 2;
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.tv-img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    margin-top: 50px;
+}
+
+.letter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(229, 232, 231);
+}
+
+.letter-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 100px;
+}
+
+.design-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 100px;
+}
+
+.message-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.footer-img {
+    width: 100%;
+    height: auto;
+    display: block;
 }

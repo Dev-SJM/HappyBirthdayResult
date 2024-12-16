@@ -9,6 +9,8 @@ body {
     margin: 0;
     padding: 0;
     overscroll-behavior-x: none;  /* 모바일에서 당겨서 새로고침 방지 */
+    background-color: rgb(146, 38, 56);
+    margin: 60px 0px 60px 0px;
     /* 배경색 제거 */
 }
 
@@ -104,7 +106,7 @@ main {
 
 .slide {
     position: absolute;
-    width: 100%;
+    width: 90%;
     height: 100%;
     border-radius: 15px;
     overflow: hidden;
@@ -260,7 +262,6 @@ main {
     width: 100%;
     height: auto;
     display: block;
-    margin-top: 100px;
 }
 
 .message-img {

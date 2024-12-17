@@ -19,17 +19,6 @@ body {
     -webkit-tap-highlight-color: transparent;  /* iOS의 탭 하이라이트 제거 */
 }
 
-header {
-    width: 100%;
-}
-
-header img {
-    width: 100%;
-    height: auto;
-    display: block;
-    background-color: rgb(229, 232, 231);
-}
-
 main {
     width: 100%;
     min-height: calc(100vh - 200px);
@@ -43,11 +32,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(229, 232, 231);
 }
 
 .content-img {
-   width: 110%;
+   width: 100%;
    height: auto;
    position: relative;
    margin-top: 30px;
@@ -58,7 +46,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(229, 232, 231);
+    background-color: rgb(222, 224, 223);
 }
 
 .event-img {
@@ -101,28 +89,46 @@ main {
     position: relative;
     width: 100%;
     height: 100%;
+    margin: 0 auto;
+    overflow: visible;
     /* transform-style: preserve-3d 제거 */
 }
 
 .slide {
     position: absolute;
     width: 90%;
-    height: 100%;
+    height: 110%;
     border-radius: 15px;
-    overflow: hidden;
-    background: url('img/card.png') no-repeat center center;
-    background-size: 100% 100%;
+    /* overflow: hidden; 이 부분을 제거 */
+    margin-top: 50px;
+    background: url('/HappyBirthdayResult/img/card.png') no-repeat center center;
+    background-size: 120% 180%;
+    background-position: -30px;
+}
+
+.slide .card-overlay {
+    position: absolute;
+    width: 135%;
+    height: 135%;
+    top: -90px;
+    left: -40px; /* 추가: 좌우로 벗어나도록 조정 */
+    background: url('/HappyBirthdayResult/img/card2.png') no-repeat center center;
+    background-size: cover;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.7s ease-out;
 }
 
 .slide img {
     position: absolute;
-    width: 64.5%; /* card.png의 내부 영역에 맞게 조절 */
-    height: 64%; /* card.png의 내부 영역에 맞게 조절 */
+    width: 61%; /* card.png의 내부 영역에 맞게 조절 */
+    height: 59%; /* card.png의 내부 영역에 맞게 조절 */
     object-fit: cover;
-    top: 49%;
-    left: 53%;
+    top: 35%;
+    left: 53.5%;
     transform: translate(-50%, -50%);
     border-radius: 10px; /* 필요한 경우 조정 */
+    z-index: 1;
 }
 
 .button {
@@ -174,17 +180,37 @@ main {
 
 .tree-img {
     position: absolute;
-    height: 100%;
+    height: 200%;
     pointer-events: none;
     z-index: 0;
 }
 
 .tree-left {
+    height: 180%;
+    left: -210px;  /* 조절 가능 */
+    top: -200px;
+}
+
+.tree-left2 {
     left: -180px;  /* 조절 가능 */
+    top: -260px;
+}
+
+.tree-left3 {
+    height: 100%;
+    left: -20px;  /* 조절 가능 */
+    top: -50px;
 }
 
 .tree-right {
-    right: -180px;  /* 조절 가능 */
+    right: -200px;  /* 조절 가능 */
+    top: -260px;
+}
+
+.tree-right2 {
+    height: 150%;
+    right: -185px;  /* 조절 가능 */
+    top: -150px;
 }
 
 .tv-container {
@@ -239,9 +265,8 @@ main {
 .tv-img {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
     z-index: 1;
-    margin-top: 50px;
 }
 
 .letter-container {
@@ -255,7 +280,6 @@ main {
     width: 100%;
     height: auto;
     display: block;
-    margin-top: 100px;
 }
 
 .design-img {

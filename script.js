@@ -6,15 +6,36 @@ let isTransitioning = false;
 
 function updateSlider() {
     slides.forEach((slide, index) => {
+        const cardOverlay = slide.querySelector('.card-overlay');
         const offset = (index - currentIndex + slides.length) % slides.length;
         
         slide.style.transition = 'transform 0.7s ease-out, opacity 0.7s ease-out';
-        slide.style.transform = `
-            translateX(${offset === 0 ? 0 : offset === 1 ? 80 : -80}%)
-            scale(${offset === 0 ? 1 : 0.9})
-        `;
-        slide.style.opacity = offset === 0 ? 1 : 0.3;  // 투명도를 0.5에서 0.3으로 변경
-        slide.style.zIndex = offset === 0 ? 1 : 0;
+        
+        if (offset === 0) {
+            // 현재 슬라이드
+            slide.style.transform = 'translateX(0%) scale(1)';
+            slide.style.opacity = 1;
+            slide.style.zIndex = 2;
+            cardOverlay.style.opacity = 1;
+        } else if (offset === 1) {
+            // 오른쪽 슬라이드
+            slide.style.transform = 'translateX(60%) scale(0.9)';
+            slide.style.opacity = 0.5;
+            slide.style.zIndex = 1;
+            cardOverlay.style.opacity = 0;
+        } else if (offset === slides.length - 1) {
+            // 왼쪽 슬라이드
+            slide.style.transform = 'translateX(-60%) scale(0.9)';
+            slide.style.opacity = 0.5;
+            slide.style.zIndex = 1;
+            cardOverlay.style.opacity = 0;
+        } else {
+            // 다른 슬라이드들
+            slide.style.transform = `translateX(${offset > 1 ? 100 : -100}%) scale(0.8)`;
+            slide.style.opacity = 0;
+            slide.style.zIndex = 0;
+            cardOverlay.style.opacity = 0;
+        }
     });
 
     dots.forEach((dot, index) => {

@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const letterNumber = btn.getAttribute('data-number');
             
             // 이미지 설정
-            letterContentImg.src = `/img/letter/context/letter-context${letterNumber}.png`;
+            letterContentImg.src = `/HappyBirthdayResult/img/letter/context/letter-context${letterNumber}.png`;
             
             // 닫기 버튼 처리
             letterContentCloseBtns.forEach(closeBtn => closeBtn.style.display = 'none');

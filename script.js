@@ -4,6 +4,11 @@ const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 let isTransitioning = false;
 
+// 터치/마우스 이벤트 관련 변수 추가
+let startX = 0;
+let isDragging = false;
+let dragThreshold = 50; // 드래그 임계값
+
 function updateSlider() {
     slides.forEach((slide, index) => {
         const cardOverlay = slide.querySelector('.card-overlay');
@@ -55,17 +60,103 @@ function handleSlide(direction) {
     }, 700);
 }
 
-// 버튼 클릭 이벤트
-document.querySelector('.prev').addEventListener('click', () => handleSlide(-1));
-document.querySelector('.next').addEventListener('click', () => handleSlide(1));
+// 기존 버튼, 도트 클릭 이벤트 그대로 유지
 
-// 도트 클릭 이벤트
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        if (isTransitioning) return;
-        const direction = index - currentIndex;
-        handleSlide(direction);
+// 터치/드래그 시작 이벤트
+slider.addEventListener('touchstart', (e) => {
+    if (isTransitioning) return;
+    startX = e.touches[0].clientX;
+    isDragging = true;
+});
+
+// 터치/드래그 이동 이벤트
+slider.addEventListener('touchmove', (e) => {
+    if (!isDragging || isTransitioning) return;
+    
+    const currentX = e.touches[0].clientX;
+    const diffX = startX - currentX;
+    
+    // 슬라이드 미리보기 효과 (선택사항)
+    slides.forEach((slide, index) => {
+        const offset = (index - currentIndex + slides.length) % slides.length;
+        slide.style.transition = 'transform 0.3s ease-out';
+        
+        if (offset === 0) {
+            slide.style.transform = `translateX(${-diffX}px)`;
+        } else if (offset === 1 && diffX > 0) {
+            slide.style.transform = `translateX(${60 - diffX}%)`;
+        } else if (offset === slides.length - 1 && diffX < 0) {
+            slide.style.transform = `translateX(${-60 - diffX}%)`;
+        }
     });
+});
+
+// 터치/드래그 종료 이벤트
+slider.addEventListener('touchend', (e) => {
+    if (!isDragging || isTransitioning) return;
+    
+    const currentX = e.changedTouches[0].clientX;
+    const diffX = startX - currentX;
+    
+    isDragging = false;
+    
+    if (Math.abs(diffX) > dragThreshold) {
+        // 충분히 드래그했다면 슬라이드 변경
+        handleSlide(diffX > 0 ? 1 : -1);
+    } else {
+        // 원래 위치로 복귀
+        updateSlider();
+    }
+});
+
+// 마우스 이벤트 (데스크톱 지원)
+slider.addEventListener('mousedown', (e) => {
+    if (isTransitioning) return;
+    startX = e.clientX;
+    isDragging = true;
+});
+
+slider.addEventListener('mousemove', (e) => {
+    if (!isDragging || isTransitioning) return;
+    
+    const currentX = e.clientX;
+    const diffX = startX - currentX;
+    
+    // 터치 이동 로직과 동일
+    slides.forEach((slide, index) => {
+        const offset = (index - currentIndex + slides.length) % slides.length;
+        slide.style.transition = 'transform 0.3s ease-out';
+        
+        if (offset === 0) {
+            slide.style.transform = `translateX(${-diffX}px)`;
+        } else if (offset === 1 && diffX > 0) {
+            slide.style.transform = `translateX(${60 - diffX}%)`;
+        } else if (offset === slides.length - 1 && diffX < 0) {
+            slide.style.transform = `translateX(${-60 - diffX}%)`;
+        }
+    });
+});
+
+slider.addEventListener('mouseup', (e) => {
+    if (!isDragging || isTransitioning) return;
+    
+    const currentX = e.clientX;
+    const diffX = startX - currentX;
+    
+    isDragging = false;
+    
+    if (Math.abs(diffX) > dragThreshold) {
+        handleSlide(diffX > 0 ? 1 : -1);
+    } else {
+        updateSlider();
+    }
+});
+
+slider.addEventListener('mouseleave', () => {
+    if (isDragging && !isTransitioning) {
+        isDragging = false;
+        updateSlider();
+    }
 });
 
 // 초기 상태 설정

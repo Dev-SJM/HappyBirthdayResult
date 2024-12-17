@@ -375,7 +375,7 @@ main {
 
 .mail-pagination {
     position: absolute;
-    bottom: 30%; /* 기존 -40px에서 20px로 변경 */
+    bottom: 25%; /* 기존 -40px에서 20px로 변경 */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
